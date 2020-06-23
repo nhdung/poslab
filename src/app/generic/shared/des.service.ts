@@ -66,9 +66,6 @@ export class DesService {
         ? CryptoJS.enc.Hex.parse(desParam.data)
         : CryptoJS.enc.Utf8.parse(desParam.data);
 
-    console.log('data: ' + data);
-    console.log('data cipher: ' + data.ciphertext)
-
     let blockCipherMode =
       desParam.blockCipherMode === BlockCipherMode.ECB
         ? CryptoJS.mode.ECB
