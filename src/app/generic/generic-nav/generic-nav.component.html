@@ -1,0 +1,9 @@
+<div class="content-container content-container-stretch-height">
+    <clr-vertical-nav [clrVerticalNavCollapsible]="true">
+        <a class="nav-link" routerLink="des" routerLinkActive="active"><span class="nav-text">DES</span></a>
+        <a class="nav-link" routerLink="aes" routerLinkActive="active"><span class="nav-text">AES</span></a>
+    </clr-vertical-nav>
+    <div class="content-area">
+        <router-outlet></router-outlet>
+    </div>
+</div>

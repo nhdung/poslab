@@ -1,0 +1,12 @@
+.console {
+    background-color: #17242B;
+    color: #FFFFFF;
+    padding: 10px;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.log-line {
+    border-style: none;
+    margin: 0rem 0;
+}
