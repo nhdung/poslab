@@ -1,6 +1,3 @@
-import { ECONNABORTED } from 'constants';
-import { Input } from '@angular/core';
-
 const map = <T, K>(fn: (item: T) => K) => (descriptions: Array<T>): Array<K> => {
     let names = []
     for (let _item of descriptions) {

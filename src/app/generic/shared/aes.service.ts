@@ -8,9 +8,7 @@ import { LoggerService } from 'src/app/shared/logger.service';
   providedIn: 'root',
 })
 export class AesService {
-  constructor(
-    private loggerService: LoggerService
-  ) {}
+  constructor(private loggerService: LoggerService) {}
 
   algorithmNameList() {
     return Aes.AesAlgorithmNameList;
@@ -76,13 +74,7 @@ export class AesService {
             cipherBlockMode,
             paddingMethod
           )
-        : this.decrypt(
-            data,
-            key,
-            iv,
-            cipherBlockMode,
-            paddingMethod
-          );
+        : this.decrypt(data, key, iv, cipherBlockMode, paddingMethod);
 
     console.log('aes result: ' + result);
 
@@ -109,7 +101,7 @@ export class AesService {
       .log(' ')
       .log(' ');
 
-      logger.flush()
+    logger.flush();
   }
 
   private encrypt(
@@ -120,7 +112,6 @@ export class AesService {
     cipherBlockMode: CryptoJS.Mode,
     paddingMethod: CryptoJS.Padding
   ): string {
-
     let encrypted = CryptoJS.AES.encrypt(plaintext, key, {
       mode: cipherBlockMode,
       padding: paddingMethod,
