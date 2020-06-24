@@ -1,1 +1,104 @@
-<p>aes works!</p>
+<div class="content-area">
+  <h3>AES</h3>
+  <form [formGroup]="aesForm" (ngSubmit)="onSubmit()">
+    <clr-radio-container clrInline>
+      <label>Algorithm</label>
+      <clr-radio-wrapper *ngFor="let _algo of algorithmNameList">
+        <input
+          type="radio"
+          clrRadio
+          [value]="_algo"
+          formControlName="algorithm"
+        />
+        <label>
+          {{ _algo }}
+        </label>
+      </clr-radio-wrapper>
+    </clr-radio-container>
+    <clr-radio-container clrInline>
+      <label>Mode</label>
+      <clr-radio-wrapper *ngFor="let _mode of cipherBlockModeNameList">
+        <input
+          type="radio"
+          clrRadio
+          [value]="_mode"
+          formControlName="cipherBlockMode"
+        />
+        <label>
+          {{ _mode }}
+        </label>
+      </clr-radio-wrapper>
+    </clr-radio-container>
+    <clr-radio-container clrInline>
+      <label>Data Format</label>
+      <clr-radio-wrapper *ngFor="let _format of inputDataFormatNameList">
+        <input
+          type="radio"
+          clrRadio
+          [value]="_format"
+          formControlName="inputDataFormat"
+        />
+        <label>
+          {{ _format }}
+        </label>
+      </clr-radio-wrapper>
+    </clr-radio-container>
+    <clr-select-container>
+        <label>Padding Method</label>
+        <select clrSelect formControlName="paddingMethod">
+            <option *ngFor="let _padding of paddingMethodNameList" [value]="_padding">
+                {{ _padding }}
+            </option>
+        </select>
+    </clr-select-container>
+    <clr-input-container>
+      <label>Key</label>
+      <input
+        clrInput
+        formControlName="key"
+        [size]="keyLengthRequired * 2 + 8"
+      />
+      <clr-control-helper>
+        Enter {{ keyLengthRequired * 2 }}-hex-digit key. [{{
+          key.value.length
+        }}]
+      </clr-control-helper>
+      <clr-control-error>
+        <div *ngIf="key.invalid">
+          <div *ngIf="key.errors.required">Key is required</div>
+          <div *ngIf="key.errors.invalidFormat">Invalid hex format</div>
+          <div *ngIf="key.errors.invalidLength">
+            Invalid length. Expect {{ keyLengthRequired * 2 }} hex digits. [{{
+              key.value.length
+            }}]
+          </div>
+        </div>
+      </clr-control-error>
+    </clr-input-container>
+    <clr-textarea-container>
+        <label>Data</label>
+        <textarea clrTextarea formControlName="data"></textarea>
+        <clr-control-error>
+            <div *ngIf="data.invalid">
+                <div *ngIf="data.errors.required">Data is required</div>
+            </div>
+        </clr-control-error>
+    </clr-textarea-container>
+    <clr-input-container>
+        <label>IV</label>
+        <input clrInput formControlName="iv">
+    </clr-input-container>
+    <clr-radio-container clrInline>
+        <label>Operation</label>
+        <clr-radio-wrapper *ngFor="let _operation of operationNameList">
+            <input type="radio" clrRadio [value]="_operation" formControlName="operation">
+            <label>
+                {{ _operation }}
+            </label>
+        </clr-radio-wrapper>
+    </clr-radio-container>
+    <button class="btn btn-primary" type="submit" [disabled]="!aesForm.valid">
+        Execute
+    </button>
+  </form>
+</div>
